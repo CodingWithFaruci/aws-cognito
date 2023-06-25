@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  actor: $GITHUB_ACTOR
+
+jobs:
+  build:
+    name: Build and Test AWS CDK Typescript Stack
+    runs-on: ubuntu-latest
+    steps:
+      - name: Initiated By User
+        run: echo "${{ env.actor }}"
+
+      - name: Check Out Code
+        uses: actions/checkout@v3.5.3
+
+      - name: Install Node
+        uses: actions/setup-node@v3.5.0
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build CDK Stack
+        run: npm run build
+
+      - name: Lint Stack
+        run: npm run lint
+
+      - name: Run Unit Tests
+        run: npm run test
+
+      - name: Diff AWS CDK Stack
+        run: npm run diff
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "eu-west-1"

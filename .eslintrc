@@ -1,0 +1,67 @@
+{
+    "env": {
+        "es2022": true,
+        "node": true,
+        "jest": true
+    },
+    "extends": [
+        "airbnb-typescript/base"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 14,
+        "project": "./tsconfig.json"
+    },
+    "rules": {
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error",
+        "complexity": [
+            "error",
+            3
+        ],
+        "max-depth": [
+            "error",
+            3
+        ],
+        "max-lines": [
+            "error",
+            100
+        ],
+        "max-len": [
+            "error",
+            140
+        ],
+        "max-statements": [
+            "error",
+            20
+        ],
+        "max-statements-per-line": [
+            "error",
+            {
+                "max": 1
+            }
+        ],
+        "max-params": [
+            "error",
+            4
+        ],
+        "no-mixed-spaces-and-tabs": "error",
+        "no-underscore-dangle": "off",
+        "no-new": "off",
+        "import/first": "off",
+        "import/prefer-default-export": "off",
+        "import/extensions": "off",
+        "import/no-extraneous-dependencies": "off",
+        "no-trailing-spaces": "warn"
+    },
+    "plugins": [
+        "jest"
+    ],
+    "settings": {
+        "jest": {
+            "version": 29
+        }
+    }
+}
